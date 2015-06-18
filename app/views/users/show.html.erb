@@ -1,0 +1,47 @@
+<% provide(:title, @user.name) %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <h1>
+        <%= gravatar_for @user %>
+        <%= @user.name %>
+      </h1>
+      <p>
+  <strong>Email:
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>Role:</strong>
+  <%= @user.role.name %>
+</p>
+
+<p>
+  <strong>Joined on:</strong>
+  <%= @joined_on %>
+</p>
+
+<p>
+  <strong>Last logged in on:</strong>
+  <%= @last_login %>
+</p>
+
+<p>
+  <strong>No. times logged in:</strong>
+  <%= @user.sign_in_count %>
+</p>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
+    </section>
+  </aside>
+  <div class="col-md-8">
+    <% if @user.programs.any? %>
+      <h3>programs (<%= @user.programs.count %>)</h3>
+      <ol class="programs">
+        <%= render @programs %>
+      </ol>
+      <%= will_paginate @programs %>
+    <% end %>
+  </div>
+</div>

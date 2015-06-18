@@ -1,0 +1,90 @@
+<li id="program-<%= program.id %>" class="list-unstyled">
+  <article class="item col-sm-6 col-md-4 event" itemscope="" itemtype="http://schema.org/Event" role="event">
+  <div class="tabbable tabs-below">
+    <div class="tab-content">
+      <section class="tab-pane fade active in" id="overview_<%= program.id %>">
+        <figure class="top">
+          <a href="/programs/<%= program.id %>/" title="Learn more about Pick of the Bunch" class="<%= program.id %>">
+              <%= image_tag program.picture.url(:small_thumb) %>
+          </a>
+        </figure>
+        <header>
+          <hgroup>
+            <h1>
+              <a href="/programs/<%= program.id %>/" title="Learn more about Pick of the Bunch" class="<%= program.id %>">
+                <%= program.name %>
+              </a>
+            </h1>
+            <h2>
+              <a href="/enterprises/<%= program.enterprise.id %>/" title="Learn more about Ferrari-Carano Vineyards &amp; Winery" class="<%= program.id %>">
+                <%= program.enterprise.name rescue "MISSING NAME" %>
+              </a>
+            </h2>
+            <h3>
+                Educational
+            </h3>
+          </hgroup>
+        </header>
+        <div class="row">
+          <div class="col-xs-6">
+            <span>Duration</span>
+            <p><b>1</b>h</p>
+          </div>
+          <div class="col-xs-6">
+            <span>Price</span>
+            <p><b><i class="fa fa-dollar"></i><%= program.price %></b></p>
+          </div>
+        </div>
+        <footer><i class="vv-map-marker"></i> <%= program.enterprise.region.name rescue "MISSING NAME" %>, <%= program.enterprise.region.province.name rescue "MISSING NAME" %></footer>
+      </section>
+      <section class="tab-pane fade" id="details_<%= program.id %>">
+        <h1>
+          <a href="/programs/<%= program.id %>/" title="Learn more about <%= program.name %>">
+            <%= program.name %>
+          </a>
+        </h1>
+        <p>
+          <b>Type:</b>
+          Educational,Food &amp; Wine,Private,Tasting
+        </p>
+        <p>
+          <b>Price:</b>
+          <i class="icon-dollar"></i> <%= program.price %>
+        </p>
+        <p>
+          <b>Duration:</b>
+          <b>1</b>h
+        </p>
+        <p>
+    <%= program.description %>
+          … <a href="/programs/<%= program.id %>/" title="Learn more about <%= program.name %>">more</a>
+        </p>
+        <button class="btn btn-primary btn-sm tab-3">Check Availability</button>
+      </section>
+      <section class="tab-pane fade" id="reserve_<%= program.id %>">
+        <h1 class="pbl">Check Availability</h1>
+        <form method="post" action="/checkout" name="eventDetail_<%= program.id %>">
+          <div class="form-group">
+            <input type="text" class="form-control input-sm eventGuests" id="eventPeople_<%= program.id %>" placeholder="#" name="eventPeople_<%= program.id %>" value="" onkeyup="javascript: eventPeopleBlur('<%= program.id %>');">
+            <label for="eventPeople_<%= program.id %>"># of people</label>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control input-sm eventDate" id="eventDate_<%= program.id %>" name="eventDate_<%= program.id %>" value="" placeholder="Date" disabled="disabled">
+            <label for="eventDate_<%= program.id %>">Arriving On</label>
+          </div>
+          <div class="form-group">
+            <select class="form-control input-sm eventTime" name="eventTime_<%= program.id %>" id="eventTime_<%= program.id %>" onblur="javascript: eventTimeSelect('<%= program.id %>');" disabled="disabled"></select>
+            <label for="eventTime_<%= program.id %>">Arrival Time</label>
+          </div>
+        </form>
+        <hr>
+      </section>
+    </div>
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#overview_<%= program.id %>" data-toggle="tab"><i class="fa fa-bookmark"></i></a></li>
+      <li class=""><a href="#details_<%= program.id %>" data-toggle="tab"><i class="fa fa-info-circle"></i></a></li>
+      <li><a href="#reserve_<%= program.id %>" data-toggle="tab"><i class="fa fa-calendar"></i></a></li>
+    </ul>
+  </div>
+</article>
+</li>

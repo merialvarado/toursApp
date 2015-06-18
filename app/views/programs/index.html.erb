@@ -1,0 +1,39 @@
+
+<h1>Listing Programs</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Seller</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @programs.each do |program| %>
+      <tr>
+        <td><%= program.name %></td>
+        <td><%= program.description[0..49] %></td>
+        <td><%= program.user.name if program.user %></td>
+        <td><%= link_to 'Show', program %></td>
+        <td>
+          <% if can? :update, program %>
+            <%= link_to 'Edit', edit_program_path(program) %>
+          <% end %>
+        </td>
+        <td>
+          <% if can? :destroy, program %>
+            <%= link_to 'Destroy', program, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<% if can? :create, Program %>
+  <%= link_to 'New Program', new_program_path %>
+<% end %>

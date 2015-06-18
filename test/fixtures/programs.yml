@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: programa 1
+  description: MyString
+  price: 150.00
+  user: pablo
+  enterprise: one
+
+two:
+  name: programa 2
+  description: MyString
+  price: 185.99
+  user: pablo
+  enterprise: one
+
+three:
+  name: program 3
+  description: Programa3
+  price: 100
+  user: catena
+  enterprise: two
+
+four:
+  name: program 4
+  description: Programa4
+  user: catena
+  enterprise: two
+
+five:
+  name: program 5
+  description: Programa5
+  price: 19999
+  user: catena
+  enterprise: two  

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+lujan:
+  name: Lujan de Cuyo
+  description: MyString
+  province: mendoza
+
+agrelo:
+  name: Agrelo
+  description: MyString
+  province: mendoza

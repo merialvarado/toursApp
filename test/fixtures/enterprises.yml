@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyText
+  region: lujan
+  phone_number: "5491151564980"
+  postal_code: "1431"
+  user: pablo
+
+two:
+  name: MyString
+  description: MyText
+  region: agrelo
+  phone_number: "5401145719766"
+  postal_code: "1431"
+  user: catena

@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  street: MyString
+  number: MyString
+  postal_code: MyString
+  latitude: 1.5
+  longitude: 1.5
+  region: lujan 
+  enterprise: one 
+
+two:
+  street: J. Cobos
+  number: S/N
+  postal_code: MyString
+  latitude: -33.164411
+  longitude: -68.913721
+  region: agrelo 
+  enterprise: two 

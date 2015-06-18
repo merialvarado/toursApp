@@ -1,0 +1,46 @@
+<% provide(:title, 'New Program') %>
+<h1>New Program</h1>
+
+<%= form_for(@program, html: { multipart: true }) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="form-group">
+    <%= f.label :name %><br>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :description %><br>
+    <%= f.text_area :description, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :price %><br>
+    <%= f.number_field :price, :class => 'text_field', :step => 'any' %>
+  </div>
+  <div class="control-group">
+    <%= f.label :enterprise_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= collection_select(:program, :enterprise_id, current_user.enterprises, :id, :name, prompt: true) %>
+    </div>
+    <%= error_span(@program[:enterprise_id]) %>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputFile">File input</label>
+    <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png', class: 'input-file' %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Save", class: "btn btn-primary" %>
+  </div>
+  
+<% end %>
+
+
+<%= link_to 'Back', programs_path %>
+
+<script type="text/javascript">
+  $('#program_picture').bind('change', function() {
+    var size_in_megabytes = this.files[0].size/1024/1024;
+    if (size_in_megabytes > 5) {
+      alert('Maximum file size is 5MB. Please choose a smaller file.');
+    }
+  });
+</script>

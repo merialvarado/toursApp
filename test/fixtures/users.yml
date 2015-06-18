@@ -1,0 +1,19 @@
+michael:
+  name: Michael Example
+  email: user1@test.eu
+  role: admin
+
+pablo:
+  name: Pablo Vino
+  email: pablo@vino.com
+  role: seller
+
+bodega:
+  name: Lagarde
+  email: lagarde@gmail.com
+  role: seller
+
+catena:
+  name: catena
+  email: catena@zapata.com
+  role: seller
