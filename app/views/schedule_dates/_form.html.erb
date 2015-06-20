@@ -1,0 +1,65 @@
+<%= form_for(@schedule_date, :html => { :class => "form-horizontal schedule_date" }) do |f| %>
+  <% if @schedule_date.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@schedule_date.errors.count, "error") %> prohibited this schedule_date from being saved:</h2>
+
+      <ul>
+      <% @schedule_date.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <%= f.label :event_repeats, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.collection_select :event_repeats, ScheduleDate::EVENT_REPEATING_RULES, :last, :first, :include_blank => false, :class => 'form-control' %>
+    </div>
+    <%= error_span(@schedule_date[:event_repeats]) %>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :repeating_every, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.collection_select :repeating_every, ScheduleDate.get_days_of_week, :first, :last, :include_blank => false %>
+    </div>
+    <%= error_span(@schedule_date[:repeating_every]) %>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :from_time, :class => 'control-label' %>
+    <div class="controls">
+      <%= time_select 'schedule_date', 'from_time', {:ampm => true, :class => "form-control"} %>
+    </div>
+    <%= error_span(@schedule_date[:from_time]) %>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :to_time, :class => 'control-label' %>
+    <div class="controls">
+      <%= time_select 'schedule_date', 'to_time', {:ampm => true, :class => "form-control"} %>
+    </div>
+    <%= error_span(@schedule_date[:to_time]) %>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :repeat_from_date, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :repeat_from_date, { 'data-provide' => 'datepicker' } %>
+    </div>
+    <%= error_span(@schedule_date[:from_time]) %>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :repeat_to_date, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :repeat_to_date, { 'data-provide' => 'datepicker' }%>
+    </div>
+    <%= error_span(@schedule_date[:repeat_to_date]) %>
+  </div>
+
+  <%= f.submit :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            schedule_dates_path, :class => 'btn btn-default' %>
+<% end %>

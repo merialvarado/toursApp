@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150616211948) do
+ActiveRecord::Schema.define(version: 20150619172901) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "street"
@@ -86,6 +86,18 @@ ActiveRecord::Schema.define(version: 20150616211948) do
     t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "schedule_dates", force: :cascade do |t|
+    t.string   "event_repeats"
+    t.string   "repeating_every"
+    t.time     "from_time"
+    t.time     "to_time"
+    t.date     "repeat_from_date"
+    t.date     "repeat_to_date"
+    t.text     "schedule"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   create_table "users", force: :cascade do |t|

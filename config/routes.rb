@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :schedule_dates
+
   resources :enterprises
 
   resources :regions
