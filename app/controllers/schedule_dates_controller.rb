@@ -1,5 +1,7 @@
 class ScheduleDatesController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_schedule_date, only: [:show, :edit, :update, :destroy, :schedule]
+  load_and_authorize_resource
 
   # GET /schedule_dates
   # GET /schedule_dates.json
@@ -24,6 +26,7 @@ class ScheduleDatesController < ApplicationController
   # POST /schedule_dates
   # POST /schedule_dates.json
   def create
+    params[:schedule_date][:repeating_every].delete("")
     @schedule_date = ScheduleDate.new(schedule_date_params)
 
     respond_to do |format|
@@ -73,6 +76,6 @@ class ScheduleDatesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def schedule_date_params
-      params.require(:schedule_date).permit(:event_repeats, :repeating_every, :repeating_every_month, :repeating_every_day, :from_time, :to_time, :repeat_from_date, :repeat_to_date)
+      params.require(:schedule_date).permit(:event_repeats, :repeating_every_month, :repeating_every_day, :from_time, :to_time, :repeat_from_date, :repeat_to_date, repeating_every:[])
     end
 end

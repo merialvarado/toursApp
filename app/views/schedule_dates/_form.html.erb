@@ -21,9 +21,10 @@
 
   <div id="weekly_div">
     <div class="control-group">
-      <%= f.label :repeating_every, :class => 'control-label' %>
+      <%= f.label :repeating_every, "Repeating every", :class => 'control-label' %>
       <div class="controls">
-        <%= f.collection_select :repeating_every, ScheduleDate.get_days_of_week, :last, :first, :include_blank => true %>
+        <%= collection_select :schedule_date, :repeating_every, ScheduleDate.get_days_of_week, :last, :first, {}, {:multiple => "multiple", :class => "multiselect"}
+        %>
       </div>
       <%= error_span(@schedule_date[:repeating_every]) %>
     </div>

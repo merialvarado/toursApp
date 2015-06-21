@@ -23,7 +23,14 @@
       <tr>
         <td><%= link_to schedule_date.id, schedule_date_path(schedule_date) %></td>
         <td><%= schedule_date.event_repeats.titleize rescue nil %></td>
-        <td><%= schedule_date.repeating_every %></td>
+        <% if schedule_date.event_repeats == "weekly" %>
+          <td><%= schedule_date.repeating_every_week %></td>
+
+        <% elsif schedule_date.event_repeats == "yearly" %>
+          <td><%= [Date::MONTHNAMES[schedule_date.repeating_every_month], schedule_date.repeating_every_day].join(" ") %></td>
+        <% else %>
+          <td> </td>
+        <% end %>
         <td><%= schedule_date.from_time.strftime("%I:%M%p") rescue nil %></td>
         <td><%= schedule_date.to_time.strftime("%I:%M%p") rescue nil %></td>
         <td><%= schedule_date.repeat_from_date %></td>

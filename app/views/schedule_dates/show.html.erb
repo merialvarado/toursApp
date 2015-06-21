@@ -39,7 +39,7 @@
 <% end %>
 <% if can? :schedule, ScheduleDate %>
   <%= link_to t('.schedule', :default => t("helpers.links.schedule")),
-              schedule_schedule_date_path(@schedule_date), :class => 'btn btn-default' %>
+              schedule_schedule_date_path(@schedule_date), :class => 'btn btn-success' %>
 <% end %>
 <% if can? :destroy, ScheduleDate %>
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),

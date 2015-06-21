@@ -23,7 +23,5 @@ ready = ->
     enableFiltering:true
   });
 
-  alert("sample");
-
 $(document).ready(ready)
 $(document).on('page:load', ready)
