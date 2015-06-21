@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
-  resources :schedule_dates
+  resources :schedule_dates do
+    member do
+      get :schedule
+    end
+  end
 
   resources :enterprises
 

@@ -19,12 +19,32 @@
     <%= error_span(@schedule_date[:event_repeats]) %>
   </div>
 
-  <div class="control-group">
-    <%= f.label :repeating_every, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.collection_select :repeating_every, ScheduleDate.get_days_of_week, :first, :last, :include_blank => false %>
+  <div id="weekly_div">
+    <div class="control-group">
+      <%= f.label :repeating_every, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.collection_select :repeating_every, ScheduleDate.get_days_of_week, :last, :first, :include_blank => true %>
+      </div>
+      <%= error_span(@schedule_date[:repeating_every]) %>
     </div>
-    <%= error_span(@schedule_date[:repeating_every]) %>
+  </div>
+
+  <div id="yearly_div">
+    <div class="control-group">
+      <%= f.label :repeating_every_month, "Repeating every( Month )", :class => 'control-label' %>
+      <div class="controls">
+        <%= f.collection_select :repeating_every_month, ScheduleDate.get_months, :last, :first, :include_blank => true %>
+      </div>
+      <%= error_span(@schedule_date[:repeating_every_month]) %>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :repeating_every_day, "Repeating every( Day )", :class => 'control-label' %>
+      <div class="controls">
+        <%= f.collection_select :repeating_every_day, (1..31).map{|x| [x, x]}, :first, :first, :include_blank => true %>
+      </div>
+      <%= error_span(@schedule_date[:repeating_every_day]) %>
+    </div>
   </div>
 
   <div class="control-group">

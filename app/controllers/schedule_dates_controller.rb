@@ -1,5 +1,5 @@
 class ScheduleDatesController < ApplicationController
-  before_action :set_schedule_date, only: [:show, :edit, :update, :destroy]
+  before_action :set_schedule_date, only: [:show, :edit, :update, :destroy, :schedule]
 
   # GET /schedule_dates
   # GET /schedule_dates.json
@@ -25,10 +25,6 @@ class ScheduleDatesController < ApplicationController
   # POST /schedule_dates.json
   def create
     @schedule_date = ScheduleDate.new(schedule_date_params)
-    puts schedule_date_params
-    puts "CREATE NA!==============================================="
-    puts @schedule_date.repeat_from_date
-    puts @schedule_date.repeat_to_date
 
     respond_to do |format|
       if @schedule_date.save
@@ -65,6 +61,10 @@ class ScheduleDatesController < ApplicationController
     end
   end
 
+  def schedule
+    send_data @schedule_date.schedule.to_yaml, :type => 'text', disposition: "attachment; filename = schedule_#{@schedule_date.id}.yml"
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_schedule_date
@@ -73,6 +73,6 @@ class ScheduleDatesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def schedule_date_params
-      params.require(:schedule_date).permit(:event_repeats, :repeating_every, :from_time, :to_time, :repeat_from_date, :repeat_to_date)
+      params.require(:schedule_date).permit(:event_repeats, :repeating_every, :repeating_every_month, :repeating_every_day, :from_time, :to_time, :repeat_from_date, :repeat_to_date)
     end
 end

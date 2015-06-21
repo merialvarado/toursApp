@@ -7,8 +7,15 @@
   <dt><strong><%= model_class.human_attribute_name(:event_repeats) %>:</strong></dt>
   <dd><%= @schedule_date.event_repeats.titleize rescue nil %></dd>
 
-  <dt><strong><%= model_class.human_attribute_name(:repeating_every) %>:</strong></dt>
-  <dd><%= @schedule_date.repeating_every %></dd>
+  <% if @schedule_date.event_repeats == "weekly" %>
+    <dt><strong><%= model_class.human_attribute_name(:repeating_every) %>:</strong></dt>
+    <dd><%= @schedule_date.repeating_every_week %></dd>
+  <% end %>
+
+  <% if @schedule_date.event_repeats == "yearly" %>
+    <dt><strong>Repeating every:</strong></dt>
+    <dd><%= [Date::MONTHNAMES[@schedule_date.repeating_every_month], @schedule_date.repeating_every_day].join(" ") %></dd>
+  <% end %>
 
   <dt><strong><%= model_class.human_attribute_name(:from_time) %>:</strong></dt>
   <dd><%= @schedule_date.from_time.strftime("%I:%M%p") rescue nil %></dd>
@@ -29,6 +36,10 @@
 <% if can? :update, ScheduleDate %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
               edit_schedule_date_path(@schedule_date), :class => 'btn btn-default' %>
+<% end %>
+<% if can? :schedule, ScheduleDate %>
+  <%= link_to t('.schedule', :default => t("helpers.links.schedule")),
+              schedule_schedule_date_path(@schedule_date), :class => 'btn btn-default' %>
 <% end %>
 <% if can? :destroy, ScheduleDate %>
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
