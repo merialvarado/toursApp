@@ -46,6 +46,8 @@ gem 'cancancan', '~> 1.10'
 gem 'phony_rails'
 gem 'font-awesome-sass', '~> 4.3.0'
 gem 'ice_cube'
+gem 'bootstrap-datepicker-rails', '~> 1.3.0.2'
+gem 'bootstrap-multiselect-rails'
 
 
 

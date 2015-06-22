@@ -16,6 +16,8 @@
                 <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Home",    root_path %></li>
         <li><%= link_to "Faq",    faq_path %></li>
+
+        <li><%= link_to "Schedule Dates", schedule_dates_path %>
         <% if logged_in? %>
           <% if current_user.admin? %>
             <li class="dropdown">
