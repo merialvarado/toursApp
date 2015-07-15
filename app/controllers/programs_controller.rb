@@ -1,7 +1,8 @@
 class ProgramsController < ApplicationController
-  before_filter :authenticate_user!, except: [:index, :show]
+  before_filter :authenticate_user!, except: [:index, :details]
   before_action :logged_in_user, only: [:create, :destroy]
   load_and_authorize_resource
+  skip_authorize_resource :only => :details
 
   # GET /programs
   # GET /programs.json
@@ -11,6 +12,10 @@ class ProgramsController < ApplicationController
   # GET /programs/1
   # GET /programs/1.json
   def show
+  end
+
+  # GET /programs/1/details
+  def details
   end
 
   # GET /programs/new

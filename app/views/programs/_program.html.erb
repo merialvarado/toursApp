@@ -4,14 +4,14 @@
     <div class="tab-content">
       <section class="tab-pane fade active in" id="overview_<%= program.id %>">
         <figure class="top">
-          <a href="/programs/<%= program.id %>/" title="Learn more about Pick of the Bunch" class="<%= program.id %>">
+          <a href="/programs/<%= program.id %>/details" title="Learn more about Pick of the Bunch" class="<%= program.id %>">
               <%= image_tag program.picture.url(:small_thumb) %>
           </a>
         </figure>
         <header>
           <hgroup>
             <h1>
-              <a href="/programs/<%= program.id %>/" title="Learn more about Pick of the Bunch" class="<%= program.id %>">
+              <a href="/programs/<%= program.id %>/details" title="Learn more about Pick of the Bunch" class="<%= program.id %>">
                 <%= program.name %>
               </a>
             </h1>
@@ -39,7 +39,7 @@
       </section>
       <section class="tab-pane fade" id="details_<%= program.id %>">
         <h1>
-          <a href="/programs/<%= program.id %>/" title="Learn more about <%= program.name %>">
+          <a href="/programs/<%= program.id %>/details" title="Learn more about <%= program.name %>">
             <%= program.name %>
           </a>
         </h1>

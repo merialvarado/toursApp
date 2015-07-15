@@ -34,6 +34,7 @@ Rails.application.routes.draw do
   get 'about'   => 'static_pages#about'
   get 'contact' => 'static_pages#contact'
   get 'signup'  => 'users#new'
+  get '/programs/:id/details', :to => 'programs#details', :as => :program_details
   #get 'users'  => 'users#index'
   #get '/users/:id', :to => 'users#show', :as => :user
   #get '/users/:id/edit'  => 'users#edit', as: 'edit_user'
