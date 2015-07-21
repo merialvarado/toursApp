@@ -15,15 +15,14 @@ class ScheduleDate < ActiveRecord::Base
   validates :repeating_every_month, :repeating_every_day, :presence => true, :if => lambda{|a| a.event_repeats == "yearly"}
 
   def schedule
-    Schedule.new(Time.parse([repeat_from_date, from_time.strftime("%I:%M %P")].join(" ")), :end_time => Time.parse([repeat_to_date, to_time.strftime("%I:%M %P")].join(" "))) do |s|
-      rule = Rule.send(event_repeats)
+    Schedule.new(Time.parse([repeat_from_date, from_time.strftime("%I:%M %P")].join(" ")), :end_time => (end_time = Time.parse([repeat_to_date, to_time.strftime("%I:%M %P")].join(" ")))) do |s|
+      rule = Rule.send(event_repeats).until(end_time)
       case event_repeats
         when "weekly"
           rule = rule.day(eval(repeating_every).map{|a| a.to_i})
         when "yearly"
           rule = rule.day_of_month(repeating_every_day).month_of_year(repeating_every_month)
         end
-
       s.add_recurrence_rule rule
     end
   end
