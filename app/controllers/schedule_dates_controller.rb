@@ -33,7 +33,11 @@ class ScheduleDatesController < ApplicationController
 
     respond_to do |format|
       if @schedule_date.save
-        format.html { redirect_to @schedule_date, notice: 'Schedule date was successfully created.' }
+        if schedule_date_params[:program_id].blank?
+          format.html { redirect_to @schedule_date, notice: 'Schedule date was successfully created.' }
+        else
+          format.html { redirect_to program_path(schedule_date_params[:program_id]), notice: 'Schedule date was successfully created.' } 
+        end
         format.json { render :show, status: :created, location: @schedule_date }
       else
         format.html { render :new }
@@ -47,7 +51,11 @@ class ScheduleDatesController < ApplicationController
   def update
     respond_to do |format|
       if @schedule_date.update(schedule_date_params)
-        format.html { redirect_to @schedule_date, notice: 'Schedule date was successfully updated.' }
+        if schedule_date_params[:program_id].blank?
+          format.html { redirect_to @schedule_date, notice: 'Schedule date was successfully updated.' }
+        else
+          format.html { redirect_to program_path(schedule_date_params[:program_id]), notice: 'Schedule date was successfully updated.' } 
+        end
         format.json { render :show, status: :ok, location: @schedule_date }
       else
         format.html { render :edit }
@@ -61,7 +69,11 @@ class ScheduleDatesController < ApplicationController
   def destroy
     @schedule_date.destroy
     respond_to do |format|
-      format.html { redirect_to schedule_dates_url, notice: 'Schedule date was successfully destroyed.' }
+      if params[:program_id].blank?
+        format.html { redirect_to schedule_dates_url, notice: 'Schedule date was successfully destroyed.' }
+      else
+        format.html { redirect_to program_path(params[:program_id]), notice: 'Schedule date was successfully destroyed.' }
+      end
       format.json { head :no_content }
     end
   end
