@@ -17,6 +17,7 @@ class ScheduleDatesController < ApplicationController
   # GET /schedule_dates/new
   def new
     @schedule_date = ScheduleDate.new
+    @program_id = params[:program_id]
   end
 
   # GET /schedule_dates/1/edit
