@@ -18,6 +18,7 @@ class ScheduleDatesController < ApplicationController
   def new
     @schedule_date = ScheduleDate.new
     @program_id = params[:program_id]
+    @schedule_date.program_id = @program_id
   end
 
   # GET /schedule_dates/1/edit
@@ -77,6 +78,6 @@ class ScheduleDatesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def schedule_date_params
-      params.require(:schedule_date).permit(:event_repeats, :repeating_every_month, :repeating_every_day, :from_time, :to_time, :repeat_from_date, :repeat_to_date, repeating_every:[])
+      params.require(:schedule_date).permit(:event_repeats, :repeating_every_month, :repeating_every_day, :from_time, :to_time, :repeat_from_date, :repeat_to_date, :program_id, repeating_every:[])
     end
 end

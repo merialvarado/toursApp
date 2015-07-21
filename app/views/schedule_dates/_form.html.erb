@@ -80,6 +80,8 @@
     <%= error_span(@schedule_date[:repeat_to_date]) %>
   </div>
 
+  <%= f.hidden_field :program_id %>
+
   <%= f.submit :class => 'btn btn-primary' %>
   <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
             schedule_dates_path, :class => 'btn btn-default' %>

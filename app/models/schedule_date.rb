@@ -2,6 +2,7 @@ class ScheduleDate < ActiveRecord::Base
 	include IceCube
 
   serialize :schedule, IceCube::Schedule
+  belongs_to :program
 
   EVENT_REPEATING_RULES = [
     ["Daily", "daily"],
