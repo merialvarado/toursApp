@@ -37,4 +37,22 @@ class ProgramTest < ActiveSupport::TestCase
     assert @program.valid?
   end
 
+  test "program can have many schedule" do
+    schedule_date1 = @program.schedule_dates.build( event_repeats: "daily", from_time: "2000-01-01 16:36:00", to_time: "2000-01-01 16:36:00", repeat_from_date: "2015-07-01", repeat_to_date: "2015-07-31" )
+    schedule_date2 = @program.schedule_dates.build( event_repeats: "daily", from_time: "2000-01-01 16:36:00", to_time: "2000-01-01 16:36:00", repeat_from_date: "2015-08-01", repeat_to_date: "2015-08-30" ) 
+    assert @program.valid?
+    assert @program.schedule_dates.size == 2
+  end
+
+  test "associated schedules should be destroyed when program is destroyed" do
+    schedule_date1 = @program.schedule_dates.build( event_repeats: "daily", from_time: "2000-01-01 16:36:00", to_time: "2000-01-01 16:36:00", repeat_from_date: "2015-07-01", repeat_to_date: "2015-07-31" )
+    schedule_date2 = @program.schedule_dates.build( event_repeats: "daily", from_time: "2000-01-01 16:36:00", to_time: "2000-01-01 16:36:00", repeat_from_date: "2015-08-01", repeat_to_date: "2015-08-30" ) 
+    @program.save
+    schedule_date_ids = @program.schedule_dates.pluck(:id)
+    @program.destroy
+    
+    assert ScheduleDate.where(:id => schedule_date_ids[0]).empty?
+    assert ScheduleDate.where(:id => schedule_date_ids[1]).empty?
+  end
+
 end

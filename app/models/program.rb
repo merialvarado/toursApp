@@ -1,7 +1,7 @@
 class Program < ActiveRecord::Base
   belongs_to :user
   belongs_to :enterprise
-  has_many :schedule_dates
+  has_many :schedule_dates, dependent: :destroy
   default_scope -> { order(created_at: :desc) }
   mount_uploader :picture, PictureUploader
   validates :user_id, presence: true
