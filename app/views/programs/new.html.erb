@@ -29,12 +29,11 @@
 
   <div class="actions">
     <%= f.submit "Save", class: "btn btn-primary" %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            programs_path, :class => 'btn btn-default' %>
   </div>
   
 <% end %>
-
-
-<%= link_to 'Back', programs_path %>
 
 <script type="text/javascript">
   $('#program_picture').bind('change', function() {

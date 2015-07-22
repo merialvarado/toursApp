@@ -26,5 +26,7 @@
   
   <div class="actions">
     <%= f.submit "Save changes", class: "btn btn-primary" %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            programs_path, :class => 'btn btn-default' %>
   </div>
 <% end %>
