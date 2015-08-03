@@ -1,0 +1,29 @@
+<div class="search well">
+  <%= form_for :q, :url => root_path, :method => :get do |f| %>
+    <div id="region_winery_div" class="col-sm-3">
+      I WANT TO
+      <br />
+      VISIT A
+      <br />
+      <a class="btn btn-primary" id="region">Region</a>
+      <a class="btn btn-primary" id="winery">Winery</a>
+    </div>
+
+    <div id="dropdown_div" class="col-sm-3">
+      <div id="region">
+        <%= f.collection_select :region_id, Region.all, :id, :name %>
+      </div>
+      <div id="enterprise">
+        <%= f.collection_select :enterprise_name, Enterprise.all, :name, :name %>
+      </div>
+    </div>
+
+    <div id="date_div" class="col-sm-3">
+      <%= f.text_field :scheduled_date, { 'data-provide' => 'datepicker' } %>
+    </div>
+
+    <div id="button_div" class="col-sm-3">
+      <%= f.submit "Lets Go!", class: "btn btn-sucess" %>
+    </div>
+  <% end %>
+</div>

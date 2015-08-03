@@ -48,6 +48,10 @@ gem 'font-awesome-sass', '~> 4.3.0'
 gem 'ice_cube'
 gem 'bootstrap-datepicker-rails', '~> 1.3.0.2'
 gem 'bootstrap-multiselect-rails'
+gem 'sunspot_rails'
+gem 'sunspot_solr'
+gem 'axlsx'
+#gem 'cloudxls-ruby'
 
 
 

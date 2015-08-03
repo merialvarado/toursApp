@@ -48,6 +48,7 @@
           </div>
         <% end %>
       <% end %>
+      <%= render :partial => '/shared/search' %>
       <%= yield %>
       <%= render 'layouts/footer' %>
       <%= debug(params) if Rails.env.development? %>

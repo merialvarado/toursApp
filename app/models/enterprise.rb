@@ -14,6 +14,12 @@ class Enterprise < ActiveRecord::Base
   # Normalizes the attribute itself before validation
   phony_normalize :phone_number, :default_country_code => 'AR'
 
+  searchable do
+    text :name
+    integer :id
+    integer :region_id
+  end
+
   private
   def normalize_phone_number
     self.phone_number = PhonyRails.normalize_number(phone_number, country_code: 'AR')

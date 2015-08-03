@@ -11,6 +11,16 @@ class Program < ActiveRecord::Base
   validate  :picture_size
   validates :price, :format => { :with => /\A\d+(?:\.\d{0,2})?\z/ }, :numericality => {:greater_than => 0, :less_than => 99999}
 
+
+  searchable do
+    integer :enterprise_id
+    join(:name, :prefix => "enterprise", :target => Enterprise, :type => :text, :join => { :from => :id, :to => :enterprise_id })
+    join(:region_id, :prefix => "enterprise", :target => Enterprise, :type => :integer, :join => { :from => :id, :to => :enterprise_id })
+  end
+
+  # join(:keywords, :prefix => "tweet", :target => Tweet, :type => :text, :join => { :from => :profile_id, :to => :id })
+  #   join(:keywords, :prefix => "rss", :target => Rss, :type => :text, :join => { :from => :profile_id, :to => :id })
+
   def schedule
     occurences = []
     schedule_dates.each do |schedule_date|
